@@ -3,15 +3,15 @@ import 'package:untitled2/src/constants/app_constants.dart';
 
 // 現場情報関連の問い合わせクラス
 class WorkSiteservice {
-  final Uri baseUrl = Uri.parse(AppConstants.WORK_SITES_BASE_URL);
-
   // TODO: URLが全く違う場合の処理も必要
   //* StatusCodeなどは画面側には返さない、ここは通信とか関連、画面には空でもいいから返す(それを画面で空か判定してデータなしとかの表示にする(表示に関わるところだから))
   // すべての現場情報取得
   Future findAllWorkSites() async {
-    final response = await http.get(baseUrl);
+    final response =
+        await http.get(Uri.parse(AppConstants.WORK_SITES_BASE_URL));
     final String statusCode = response.statusCode.toString();
 
+    // TODO: 別メソットに切り出したほうがいいかも
     if (AppConstants.IS_DEBUG) {
       // TODO: ↓も定数化すべき？(メッセージ群としてやったほうがいいかも、使いまわしもするし)
       print("StatusCode:" + statusCode);
