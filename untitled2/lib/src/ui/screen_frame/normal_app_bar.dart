@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CommonAppBar extends StatelessWidget with PreferredSizeWidget {
+// カスタムAppBarクラス
+class NormalAppBar extends StatelessWidget with PreferredSizeWidget {
   final title;
-  const CommonAppBar({this.title, super.key});
+  const NormalAppBar({this.title, super.key});
 
   @override
   Widget build(BuildContext context) {
