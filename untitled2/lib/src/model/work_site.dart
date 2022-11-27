@@ -1,6 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
+import 'package:untitled2/src/constants/app_constants.dart';
 
 // 現場情報のモデルクラス
 class WorkSite {
@@ -35,17 +34,18 @@ class WorkSite {
       this.createdAt,
       this.updatedAt});
 
-  WorkSite.fromJson(Map<String, dynamic> jsonData)
-      : id = jsonData['id'],
-        name = jsonData['name'],
-        subName = jsonData['subName'],
-        type = jsonData['type'],
-        staffName = jsonData['staffName'],
-        photo = jsonData['photo'],
-        address = jsonData['address'],
-        status = jsonData['status'],
-        startAt = jsonData['startAt'],
-        endAt = jsonData['endAt'],
-        createdAt = jsonData['createdAt'],
-        updatedAt = jsonData['updatedAt'];
+  // APIからデータを受け取ったあとjsonからDartオブジェクト型へ変換する
+  WorkSite.fromJson(Map<String, dynamic> jsonWorkSite)
+      : id = jsonWorkSite[AppConstants.ID],
+        name = jsonWorkSite[AppConstants.NAME],
+        subName = jsonWorkSite[AppConstants.SUB_NAME],
+        type = jsonWorkSite[AppConstants.TYPE],
+        staffName = jsonWorkSite[AppConstants.STAFF_NAME],
+        photo = jsonWorkSite[AppConstants.PHOTO],
+        address = jsonWorkSite[AppConstants.ADDRESS],
+        status = jsonWorkSite[AppConstants.STATUS],
+        startAt = jsonWorkSite[AppConstants.START_AT],
+        endAt = jsonWorkSite[AppConstants.END_AT],
+        createdAt = jsonWorkSite[AppConstants.CREATED_AT],
+        updatedAt = jsonWorkSite[AppConstants.UPDATED_AT];
 }
