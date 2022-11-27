@@ -11,6 +11,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+
+        // アプリ起動時ホーム画面として現場情報一覧画面を表示
         home: const AllWorkSite());
   }
 }
