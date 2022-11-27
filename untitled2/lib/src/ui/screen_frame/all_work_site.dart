@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/src/ui/screen_frame/normal_app_bar.dart';
+import 'package:untitled2/src/ui/component/normal_app_bar.dart';
 
 // 現場情報一覧を表示する画面
 class AllWorkSite extends StatelessWidget {
