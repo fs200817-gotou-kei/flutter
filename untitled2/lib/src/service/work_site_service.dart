@@ -1,4 +1,3 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:untitled2/src/constants/app_constants.dart';
 
@@ -12,8 +11,12 @@ class WorkSiteservice {
   Future findAllWorkSites() async {
     final response = await http.get(baseUrl);
     final String statusCode = response.statusCode.toString();
-    print("StatusCode:" + statusCode);
-    print(response.body);
+
+    if (AppConstants.IS_DEBUG) {
+      // TODO: ↓も定数化すべき？(メッセージ群としてやったほうがいいかも、使いまわしもするし)
+      print("StatusCode:" + statusCode);
+      print(response.body);
+    }
 
     if (isOk(statusCode)) return response;
 

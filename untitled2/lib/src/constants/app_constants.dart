@@ -6,6 +6,7 @@ class AppConstants {
   static const String APP_TITLE = "WorkSitesManageApp";
 
 // デバッグモードかリリースモードか
+  static const bool IS_DEBUG = true;
 
 // 各画面のAppBarに表示するタイトル
   static const ALL_WORK_SITES_SCREEN_TITLE = "現場情報一覧";
