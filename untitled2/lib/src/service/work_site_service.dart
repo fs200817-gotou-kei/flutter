@@ -4,7 +4,7 @@ import 'package:untitled2/src/constants/app_constants.dart';
 
 // 現場情報関連の問い合わせクラス
 class WorkSiteservice {
-  final Uri baseUrl = Uri.parse(Constants.ALL_WORK_SITES_SCREEN_URL);
+  final Uri baseUrl = Uri.parse(AppConstants.WORK_SITES_BASE_URL);
 
   // TODO: URLが全く違う場合の処理も必要
   //* StatusCodeなどは画面側には返さない、ここは通信とか関連、画面には空でもいいから返す(それを画面で空か判定してデータなしとかの表示にする(表示に関わるところだから))
@@ -22,10 +22,10 @@ class WorkSiteservice {
   }
 
   bool isOk(String statusCode) {
-    return statusCode == Constants.SUCCESS;
+    return statusCode == AppConstants.SUCCESS;
   }
 
   bool isNotFound(String statusCode) {
-    return statusCode == Constants.NOT_FOUND;
+    return statusCode == AppConstants.NOT_FOUND;
   }
 }

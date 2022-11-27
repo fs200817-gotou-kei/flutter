@@ -9,7 +9,7 @@ class AllWorkSite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NormalAppBar(title: Constants.ALL_WORK_SITES_SCREEN_TITLE),
+      appBar: NormalAppBar(title: AppConstants.ALL_WORK_SITES_SCREEN_TITLE),
       body: Container(),
     );
   }
