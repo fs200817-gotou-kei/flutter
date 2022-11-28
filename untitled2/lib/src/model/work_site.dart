@@ -1,7 +1,8 @@
-import 'package:flutter/foundation.dart';
-import 'package:untitled2/src/constants/app_constants.dart';
-
 // 現場情報のモデルクラス
+import 'dart:typed_data';
+
+import '../constants/app_constants.dart';
+
 class WorkSite {
   final int? id;
   final String? name;
@@ -9,7 +10,7 @@ class WorkSite {
   final String? type;
   final String? staffName;
 
-  // TODO: 型はこれでいいのか
+  // // TODO: 型はこれでいいのか
   final ByteData? photo;
 
   final String? address;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/src/constants/app_constants.dart';
 
 // カスタムAppBarクラス
 class NormalAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -8,7 +9,9 @@ class NormalAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        title: title == null ? Text("No Title") : Text(title.toString()));
+        title: title == null
+            ? const Text(AppConstants.NO_TITLE_MESSEGE)
+            : Text(title.toString()));
   }
 
   @override

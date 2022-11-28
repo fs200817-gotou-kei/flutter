@@ -7,6 +7,7 @@ class WorkSiteservice {
   //* StatusCodeなどは画面側には返さない、ここは通信とか関連、画面には空でもいいから返す(それを画面で空か判定してデータなしとかの表示にする(表示に関わるところだから))
   // すべての現場情報取得
   Future findAllWorkSites() async {
+    // TODO: http.getはgetメソッドとして切り出したほうがいい
     final response =
         await http.get(Uri.parse(AppConstants.WORK_SITES_BASE_URL));
     final String statusCode = response.statusCode.toString();
@@ -14,8 +15,8 @@ class WorkSiteservice {
     // TODO: 別メソットに切り出したほうがいいかも
     if (AppConstants.IS_DEBUG) {
       // TODO: ↓も定数化すべき？(メッセージ群としてやったほうがいいかも、使いまわしもするし)
-      print("StatusCode:" + statusCode);
-      print(response.body);
+      showMesssage(AppConstants.STATUS_CODE_MESSEGE + statusCode);
+      showMesssage(response.body.toString());
     }
 
     if (isOk(statusCode)) return response;
@@ -24,6 +25,12 @@ class WorkSiteservice {
     if (isNotFound(statusCode)) return response;
   }
 
+  // TODO: showは別で出力用クラスを作ったほうがいいか
+  void showMesssage(String message) {
+    print(message);
+  }
+
+  // TODO: 判定用のクラスを作ったほうがいいか
   bool isOk(String statusCode) {
     return statusCode == AppConstants.SUCCESS;
   }

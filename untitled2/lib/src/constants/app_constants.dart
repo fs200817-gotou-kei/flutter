@@ -34,4 +34,8 @@ class AppConstants {
 // http通信のStatusCode
   static const SUCCESS = "200";
   static const NOT_FOUND = "404";
+
+  // メッセージ
+  static const NO_TITLE_MESSEGE = "No Title";
+  static const STATUS_CODE_MESSEGE = "StatusCode:";
 }
