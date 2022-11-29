@@ -38,4 +38,6 @@ class AppConstants {
   // メッセージ
   static const NO_TITLE_MESSEGE = "No Title";
   static const STATUS_CODE_MESSEGE = "StatusCode:";
+  static const FUTURE_BUILDER_ERROR_MESSAGE = "FutureBuilderでエラー発生 : ";
+  static const FUTURE_BUILDER_SUCCESS_MESSAGE = "FutureBuilderでデータ取得が完了いたしました。";
 }

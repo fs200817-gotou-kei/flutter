@@ -22,7 +22,7 @@ class WorkSiteApiService {
     if (ConnectionStateValidate.isOk(statusCode)) return response.body;
 
     // TODO: NOT_FOUND時の中身って何だろう？それによって返す値が変わる
-    if (isNotFound(statusCode)) return response;
+    if (ConnectionStateValidate.isNotFound(statusCode)) return response;
   }
 
   getApi(String work_sites_base_url) async {
