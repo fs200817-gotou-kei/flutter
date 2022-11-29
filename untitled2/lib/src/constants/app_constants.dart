@@ -15,7 +15,7 @@ class AppConstants {
   static const EDIT_WORK_SITES_SCREEN_TITLE = "現場情報一覧";
 
 // APIへの問い合わせURL一覧
-  static const WORK_SITES_BASE_URL = "http://127.0.0.1:8080/api/v1/worksites";
+  static const WORK_SITES_BASE_URL = "http://10.0.2.2:8080/api/v1/worksites";
 
 // WorkSiteのパラメーター
   static const String ID = "id";

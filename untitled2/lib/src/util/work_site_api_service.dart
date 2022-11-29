@@ -25,7 +25,11 @@ class WorkSiteApiService {
     }
 
     // TODO: NOT_FOUND時の中身って何だろう？それによって返す値が変わる
-    if (ConnectionStateValidate.isNotFound(statusCode)) return response;
+    if (ConnectionStateValidate.isNotFound(statusCode))
+      return TypeConverter.jsonToObject(response.bodyBytes);
+
+    // TODO: ↓そのほかの場合どう処理するか
+    return TypeConverter.jsonToObject(response.bodyBytes);
   }
 
   getApi(String work_sites_base_url) async {
@@ -34,7 +38,8 @@ class WorkSiteApiService {
 
   void showDebugMessage(statusCode, response) {
     if (AppConstants.IS_DEBUG) {
-      MessageService.show(AppConstants.STATUS_CODE_MESSEGE + statusCode);
+      MessageService.show(
+          AppConstants.STATUS_CODE_MESSEGE + statusCode.toString());
       MessageService.show(response.body.toString());
     }
   }
