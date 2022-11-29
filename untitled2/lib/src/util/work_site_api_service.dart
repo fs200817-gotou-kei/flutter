@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:untitled2/src/constants/app_constants.dart';
+import 'package:untitled2/src/util/connection_state_validate.dart';
 import 'package:untitled2/src/util/messange_service.dart';
 
 // 現場情報関連の問い合わせクラス
@@ -9,7 +10,7 @@ class WorkSiteApiService {
   // すべての現場情報取得
   Future findAllWorkSites() async {
     final response = await getApi(AppConstants.WORK_SITES_BASE_URL);
-    final String statusCode = response.statusCode.toString();
+    final statusCode = response.statusCode;
 
     // TODO: 別メソットに切り出したほうがいいかも
     if (AppConstants.IS_DEBUG) {
@@ -18,19 +19,10 @@ class WorkSiteApiService {
       MessageService.show(response.body.toString());
     }
 
-    if (isOk(statusCode)) return response.body;
+    if (ConnectionStateValidate.isOk(statusCode)) return response.body;
 
     // TODO: NOT_FOUND時の中身って何だろう？それによって返す値が変わる
     if (isNotFound(statusCode)) return response;
-  }
-
-  // TODO: 判定用のクラスを作ったほうがいいか
-  bool isOk(String statusCode) {
-    return statusCode == AppConstants.SUCCESS;
-  }
-
-  bool isNotFound(String statusCode) {
-    return statusCode == AppConstants.NOT_FOUND;
   }
 
   getApi(String work_sites_base_url) async {
