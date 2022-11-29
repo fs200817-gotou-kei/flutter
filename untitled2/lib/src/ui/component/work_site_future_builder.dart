@@ -8,7 +8,7 @@ import 'package:untitled2/src/util/messange_service.dart';
 // APIから現場情報リストを取得しリストビューで表示する
 class WorkSiteFutureBuilder extends StatefulWidget {
   final Function getApiFunction;
-  WorkSiteFutureBuilder(this.getApiFunction, {super.key});
+  const WorkSiteFutureBuilder(this.getApiFunction, {super.key});
 
   @override
   State<WorkSiteFutureBuilder> createState() => _WorkSiteFutureBuilderState();
@@ -19,6 +19,7 @@ class _WorkSiteFutureBuilderState extends State<WorkSiteFutureBuilder> {
 
   @override
   void initState() {
+    super.initState();
     getApiFunction = widget.getApiFunction;
   }
 
@@ -41,7 +42,7 @@ class _WorkSiteFutureBuilderState extends State<WorkSiteFutureBuilder> {
             List<WorkSite> workSites = snapshot.data;
             return WorkSiteListView(workSites);
           }
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         });
   }
 }

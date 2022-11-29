@@ -16,15 +16,21 @@ class _WorkSiteListViewState extends State<WorkSiteListView> {
 
   @override
   void initState() {
+    super.initState();
     workSites = widget.workSites;
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      itemCount: workSites.length,
       itemBuilder: (BuildContext context, int index) {
-        Card(
-          child: Text(workSites[index].name.toString()),
+        return Column(
+          children: [
+            Card(
+              child: Text(workSites[index].name.toString()),
+            ),
+          ],
         );
       },
     );

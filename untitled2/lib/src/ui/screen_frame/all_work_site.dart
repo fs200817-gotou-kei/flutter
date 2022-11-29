@@ -12,7 +12,8 @@ class AllWorkSite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: NormalAppBar(title: AppConstants.ALL_WORK_SITES_SCREEN_TITLE),
+        appBar:
+            const NormalAppBar(title: AppConstants.ALL_WORK_SITES_SCREEN_TITLE),
         // TODO: なんか名前微妙
         body: WorkSiteFutureBuilder(apiService.findAllWorkSites));
   }
