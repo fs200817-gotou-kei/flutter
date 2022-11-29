@@ -15,6 +15,6 @@ class MyApp extends StatelessWidget {
         ),
 
         // アプリ起動時ホーム画面として現場情報一覧画面を表示
-        home: const AllWorkSite());
+        home: AllWorkSite());
   }
 }
