@@ -37,7 +37,8 @@ class _WorkSiteFutureBuilderState extends State<WorkSiteFutureBuilder> {
                   snapshot.error.toString()),
             );
           }
-          if (ConnectionStateValidate.isOk(snapshot.connectionState)) {
+          if (ConnectionStateValidate.isOk(
+              snapshot.connectionState.toString())) {
             MessageService.show(AppConstants.FUTURE_BUILDER_SUCCESS_MESSAGE);
             List<WorkSite> workSites = snapshot.data;
             return WorkSiteListView(workSites);

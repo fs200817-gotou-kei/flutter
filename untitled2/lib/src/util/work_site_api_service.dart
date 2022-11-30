@@ -14,7 +14,7 @@ class WorkSiteApiService {
   // すべての現場情報取得
   Future<List<dynamic>> findAllWorkSites() async {
     final response = await getApi(AppConstants.WORK_SITES_BASE_URL);
-    final statusCode = response.statusCode;
+    final statusCode = response.statusCode.toString();
 
     // debugメッセージと普通のメッセージが分かれているのが少し気持ちが悪い
     showDebugMessage(statusCode, response);

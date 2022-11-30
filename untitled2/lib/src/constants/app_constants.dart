@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class AppConstants {
 // envファイルはパスワードとかAPI Keyなどみたいに隠したいやつを記載する
 //* シンプルな定数は言語ファイル作ったほうがtypoが起こった際にコンパイルエラーとして検出されるからいい
@@ -32,8 +34,8 @@ class AppConstants {
   static const String UPDATED_AT = "updatedAt";
 
 // http通信のStatusCode
-  static const SUCCESS = 200;
-  static const NOT_FOUND = 404;
+  static const String SUCCESS = "200";
+  static const String NOT_FOUND = "404";
 
   // メッセージ
   static const NO_TITLE_MESSEGE = "No Title";
