@@ -34,12 +34,16 @@ class AppConstants {
   static const String UPDATED_AT = "updatedAt";
 
 // http通信のStatusCode
-  static const String SUCCESS = "ConnectionState.done";
-  static const String NOT_FOUND = "404";
+  static const ConnectionState SUCCESS = ConnectionState.done;
+  static const ConnectionState NOT_FOUND = ConnectionState.none;
+  static const ConnectionState WAITING = ConnectionState.waiting;
 
   // メッセージ
   static const NO_TITLE_MESSEGE = "No Title";
   static const STATUS_CODE_MESSEGE = "StatusCode:";
   static const FUTURE_BUILDER_ERROR_MESSAGE = "FutureBuilderでエラー発生 : ";
   static const FUTURE_BUILDER_SUCCESS_MESSAGE = "FutureBuilderでデータ取得が完了いたしました。";
+  static const DEBUG_START_MESSAGE = "デバッグモードでアプリを開始します。";
+
+  static const RELEASE_START_MESSAGE = "リリースモードでアプリを開始します。";
 }

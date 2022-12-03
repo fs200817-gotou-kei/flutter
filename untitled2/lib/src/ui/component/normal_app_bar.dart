@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled2/src/constants/app_constants.dart';
+import 'package:untitled2/src/constant/app_constants.dart';
 
 // カスタムAppBarクラス
 class NormalAppBar extends StatelessWidget with PreferredSizeWidget {

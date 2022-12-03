@@ -1,5 +1,5 @@
 // 現場情報のモデルクラス
-import 'package:untitled2/src/constants/app_constants.dart';
+import 'package:untitled2/src/constant/app_constants.dart';
 
 class WorkSite {
   //* プロパティの数が多いため名前付きコンストラクタにして受け渡し時の引数順番ミスによる値の入れ間違いを防ぐ
