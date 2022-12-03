@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:untitled2/src/model/entity/work_site/work_site.dart';
+import 'package:untitled2/src/model/work_site.dart';
 
 class WorkSiteListView extends StatefulWidget {
-  final List<WorkSite> workSites;
+  final List<WorkSite>? workSites;
   const WorkSiteListView(this.workSites, {super.key});
 
   @override
@@ -12,23 +10,24 @@ class WorkSiteListView extends StatefulWidget {
 }
 
 class _WorkSiteListViewState extends State<WorkSiteListView> {
-  late List<WorkSite> workSites;
+  late List<WorkSite>? workSites;
 
   @override
   void initState() {
     super.initState();
     workSites = widget.workSites;
+    // print(workSites.toString());
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: workSites.length,
+      itemCount: workSites == null ? 0 : workSites!.length,
       itemBuilder: (BuildContext context, int index) {
         return Column(
           children: [
             Card(
-              child: Text(workSites[index].name.toString()),
+              child: Text(workSites.toString()),
             ),
           ],
         );

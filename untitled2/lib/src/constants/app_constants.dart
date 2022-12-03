@@ -34,7 +34,7 @@ class AppConstants {
   static const String UPDATED_AT = "updatedAt";
 
 // http通信のStatusCode
-  static const String SUCCESS = "200";
+  static const String SUCCESS = "ConnectionState.done";
   static const String NOT_FOUND = "404";
 
   // メッセージ

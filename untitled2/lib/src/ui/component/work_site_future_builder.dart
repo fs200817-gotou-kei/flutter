@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:untitled2/src/constants/app_constants.dart';
-import 'package:untitled2/src/model/entity/work_site/work_site.dart';
+import 'package:untitled2/src/model/work_site.dart';
 import 'package:untitled2/src/ui/component/work_site_list_view.dart';
 import 'package:untitled2/src/util/connection_state_validate.dart';
 import 'package:untitled2/src/util/messange_service.dart';
@@ -37,10 +38,11 @@ class _WorkSiteFutureBuilderState extends State<WorkSiteFutureBuilder> {
                   snapshot.error.toString()),
             );
           }
-          if (ConnectionStateValidate.isOk(
-              snapshot.connectionState.toString())) {
+          if (snapshot.connectionState == ConnectionState.done) {
             MessageService.show(AppConstants.FUTURE_BUILDER_SUCCESS_MESSAGE);
-            List<WorkSite> workSites = snapshot.data;
+            List<WorkSite>? workSites = snapshot.data;
+            print(snapshot.data);
+            print(snapshot.data);
             return WorkSiteListView(workSites);
           }
           return const CircularProgressIndicator();
