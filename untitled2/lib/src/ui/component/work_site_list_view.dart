@@ -16,7 +16,6 @@ class _WorkSiteListViewState extends State<WorkSiteListView> {
   void initState() {
     super.initState();
     workSites = widget.workSites;
-    // print(workSites.toString());
   }
 
   @override
@@ -27,7 +26,8 @@ class _WorkSiteListViewState extends State<WorkSiteListView> {
         return Column(
           children: [
             Card(
-              child: Text(workSites.toString()),
+              child:
+                  Text(workSites == null ? "" : workSites![index].toString()),
             ),
           ],
         );
