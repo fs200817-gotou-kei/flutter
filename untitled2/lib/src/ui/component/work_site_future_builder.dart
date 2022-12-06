@@ -21,6 +21,8 @@ class _WorkSiteFutureBuilderState extends State<WorkSiteFutureBuilder> {
   @override
   void initState() {
     super.initState();
+
+    // TODO: プロバイダーを使う
     getApiFunction = widget.getApiFunction;
   }
 

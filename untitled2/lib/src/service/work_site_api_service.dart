@@ -22,7 +22,6 @@ class WorkSiteApiService {
     logger.d(response.body.toString());
     String utfData = utf8.decode(response.bodyBytes);
     final jsonData = json.decode(utfData);
-
     final workSites =
         List<WorkSite>.from(jsonData.map((item) => WorkSite.fromJson(item)));
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:untitled2/src/model/work_site.dart';
 
@@ -23,11 +25,19 @@ class _WorkSiteListViewState extends State<WorkSiteListView> {
     return ListView.builder(
       itemCount: workSites == null ? 0 : workSites!.length,
       itemBuilder: (BuildContext context, int index) {
+        WorkSite worksite = workSites == null ? WorkSite() : workSites![index];
         return Column(
           children: [
-            Card(
-              child:
-                  Text(workSites == null ? "" : workSites![index].toString()),
+            Container(
+              width: double.infinity,
+              child: Card(
+                child: Column(
+                  children: [
+                    Text(worksite.name.toString()),
+                    Text(worksite.staffName.toString()),
+                  ],
+                ),
+              ),
             ),
           ],
         );

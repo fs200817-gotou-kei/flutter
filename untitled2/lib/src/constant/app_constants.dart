@@ -19,7 +19,7 @@ class AppConstants {
 // APIへの問い合わせURL一覧
   static const WORK_SITES_BASE_URL = "http://10.0.2.2:8080/api/v1/worksites";
 
-// WorkSiteのパラメーター
+// WorkSiteの英語パラメーター
   static const String ID = "id";
   static const String NAME = "name";
   static const String SUB_NAME = "subName";
@@ -33,7 +33,25 @@ class AppConstants {
   static const String CREATED_AT = "createdAt";
   static const String UPDATED_AT = "updatedAt";
 
-// http通信のStatusCode
+// WorkSiteの日本語パラメーター
+  static const String JA_NAME = "現場名";
+  static const String JA_SUB_NAME = "施工箇所";
+  static const String JA_TYPE = "種別";
+  static const String JA_STAFF_NAME = "担当者";
+  static const String JA_PHOTO = "現場写真";
+  static const String JA_ADRESS = "住所";
+  static const String JA_STATUS = "ステータス";
+
+  // TextFieldのplaceholder
+  static const String NAME_HINT_TEXT = "現場名称を入力してください";
+  static const String SUB_NAME_HINT_TEXT = "施工箇所を入力してください";
+  static const String STAFF_NAME_HINT_TEXT = "担当者を入力してください";
+  static const String PICTURE_HINT_TEXT = "写真が選択されていません";
+  static const String ADRESS_HINT_TEXT = "住所をを入力してください";
+  static const String START_AT_HINT_TEXT = "開始日（予定日）を入力してください";
+  static const String END_AT_HINT_TEXT = "終了日（予定日）を入力してください";
+
+  // http通信のStatusCode
   static const ConnectionState SUCCESS = ConnectionState.done;
   static const ConnectionState NOT_FOUND = ConnectionState.none;
   static const ConnectionState WAITING = ConnectionState.waiting;
