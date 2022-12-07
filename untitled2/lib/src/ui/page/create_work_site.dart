@@ -8,8 +8,9 @@ class CreateWorkSite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: NormalAppBar(title: AppConstants.CREATE_WORK_SITES_SCREEN_TITLE),
+    return const Scaffold(
+      appBar:
+          WorkSiteAppBar(title: AppConstants.CREATE_WORK_SITES_SCREEN_TITLE),
       body: WorkSiteForm(),
     );
   }

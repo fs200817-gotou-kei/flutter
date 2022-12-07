@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled2/src/constant/app_constants.dart';
 import 'package:untitled2/src/ui/page/all_work_site.dart';
 
+// 現場管理アプリ
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

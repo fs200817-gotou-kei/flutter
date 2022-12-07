@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:untitled2/src/constant/app_constants.dart';
 
 // カスタムAppBarクラス
-class NormalAppBar extends StatelessWidget with PreferredSizeWidget {
+class WorkSiteAppBar extends StatelessWidget with PreferredSizeWidget {
   final String? title;
-  const NormalAppBar({this.title, super.key});
+  const WorkSiteAppBar({this.title, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -14,8 +14,9 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
   // TODO: textfieldのcontrollerってここで管理するの微妙な気がする
   String _type = "";
   String _status = "";
-  TextEditingController _startAt = TextEditingController();
+  final TextEditingController _startAt = TextEditingController();
 
+  // TODO: ラジオボタンの↓昨日はきれいな形でも共通化を目指す(引数でcontroller渡すのは気持ち悪い)
   void _handleTypeRadio(String? e) => setState(() {
         _type = e!;
       });
@@ -23,14 +24,15 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
         _status = e!;
       });
 
+// TODO: なんか結構でかくなってしまったから部品化とかできそう(Widget切り出す)
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        margin: EdgeInsets.all(20),
-        padding: EdgeInsets.all(8),
+        margin: const EdgeInsets.all(AppConstants.FORM_MARGIN),
+        padding: const EdgeInsets.all(AppConstants.FORM_PADDING),
         decoration: BoxDecoration(
-            border: Border.all(color: Color.fromARGB(255, 240, 234, 234)),
+            border: Border.all(color: const Color.fromARGB(255, 240, 234, 234)),
             borderRadius: BorderRadius.circular(5)),
         child: Form(
           key: _formKey,
@@ -100,8 +102,8 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
             TextField(
               controller: _startAt,
               readOnly: true,
-              decoration:
-                  InputDecoration(border: OutlineInputBorder(), hintText: "日付"),
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), hintText: "日付"),
               onTap: () async {
                 DateTime initDate = DateTime.now();
                 try {
@@ -112,12 +114,25 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
                     context: context,
                     initialDate: initDate,
                     firstDate: DateTime(2020),
-                    lastDate: DateTime.now().add(Duration(days: 365)));
+                    lastDate: DateTime.now().add(const Duration(days: 365)));
+
+                //* controllerであるstartAtに上の選択したpickedをいれればあとは自動で更新してくれる
+                String? formatDate;
+                try {
+                  formatDate = DateFormat('yyyy/MM/dd').format(picked!);
+                } catch (_) {}
+                if (formatDate != null) {
+                  _startAt.text = formatDate;
+                }
               },
             )
           ]),
         ),
       ),
     );
+  }
+
+  Widget CustomRadioListTile(String title, String value, groupValue){
+    return RadioListTile(title: Text(title),value: value, groupValue: groupValue, onChanged: _handleStatusRadio)
   }
 }

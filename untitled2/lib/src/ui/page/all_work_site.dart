@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:untitled2/src/constant/app_constants.dart';
 import 'package:untitled2/src/ui/component/normal_app_bar.dart';
 import 'package:untitled2/src/ui/component/work_site_future_builder.dart';
@@ -15,15 +14,13 @@ class AllWorkSite extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          const NormalAppBar(title: AppConstants.ALL_WORK_SITES_SCREEN_TITLE),
-      // TODO: なんか名前微妙
+          const WorkSiteAppBar(title: AppConstants.ALL_WORK_SITES_SCREEN_TITLE),
       body: WorkSiteFutureBuilder(apiService.findAllWorkSites),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
-          // TODO: もう少し詳しくどういう処理しているか理解
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => CreateWorkSite()));
+              MaterialPageRoute(builder: (context) => const CreateWorkSite()));
         },
       ),
     );

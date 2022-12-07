@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:untitled2/src/model/work_site.dart';
 
@@ -13,6 +11,7 @@ class WorkSiteListView extends StatefulWidget {
 
 class _WorkSiteListViewState extends State<WorkSiteListView> {
   late List<WorkSite>? workSites;
+  final int defaultItemCount = 0;
 
   @override
   void initState() {
@@ -23,12 +22,12 @@ class _WorkSiteListViewState extends State<WorkSiteListView> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: workSites == null ? 0 : workSites!.length,
+      itemCount: workSites == null ? defaultItemCount : workSites!.length,
       itemBuilder: (BuildContext context, int index) {
         WorkSite worksite = workSites == null ? WorkSite() : workSites![index];
         return Column(
           children: [
-            Container(
+            SizedBox(
               width: double.infinity,
               child: Card(
                 child: Column(
