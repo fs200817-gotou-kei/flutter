@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:untitled2/src/constant/app_constants.dart';
 
+// 現場情報作成、編集画面で使用するフォームUI
 class WorkSiteForm extends StatefulWidget {
   const WorkSiteForm({super.key});
 
@@ -12,6 +13,11 @@ class WorkSiteForm extends StatefulWidget {
 class _WorkSiteFormState extends State<WorkSiteForm> {
   final _formKey = GlobalKey<FormState>();
   // TODO: textfieldのcontrollerってここで管理するの微妙な気がする
+  // → Provider？
+  // enumを別ファイルに分けてそのクラスを持ちたい
+  // modelとはまた別にしたい
+  // enumを公式ではradioの値が変わるのにenum使っているけどいいのか、わかりづらくないか
+  // https://api.flutter.dev/flutter/material/Radio-class.html
   String _type = "";
   String _status = "";
   final TextEditingController _startAt = TextEditingController();
@@ -37,25 +43,25 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
         child: Form(
           key: _formKey,
           child: Column(children: [
-            const Text(AppConstants.JA_NAME),
-            TextFormField(
-              decoration:
-                  const InputDecoration(labelText: AppConstants.NAME_HINT_TEXT),
-            ),
-            const Text(AppConstants.JA_SUB_NAME),
-            TextFormField(
-              decoration: const InputDecoration(
-                  labelText: AppConstants.SUB_NAME_HINT_TEXT),
-            ),
+            // labelからformfieldをワンセットでメソッドで切り出し
+            // ラジオは引数をオブジェクト型でグループ化してループでラジオボタン作っていくほうがいいかも
+            // これができれば結構きれいにbuild内はメタ情報のみに絞れそう
+            getInputItem(AppConstants.JA_NAME, AppConstants.NAME_HINT_TEXT),
+            getInputItem(
+                AppConstants.JA_SUB_NAME, AppConstants.SUB_NAME_HINT_TEXT),
             const Text(AppConstants.JA_TYPE),
             RadioListTile(
                 // TODO: ↓の値はdbの設計をリレーションとしたタイミングでdbの値をとるようにするから今はべた書きでOK
                 // TODO: valueはworksiteインスタンスから取得するようにする
+                // TODO: やるとすればdbから対象のデータ受け取ってそれをcustomRadioに渡してループ処理して返してもらうぐらいかな？
                 title: const Text("新築"),
                 value: "1",
                 // groupValueは共通のラジオグループということを認識させるためのkey
                 groupValue: _type,
                 onChanged: _handleTypeRadio),
+
+            // TODO: ↓のようにオブジェクト型を1個渡してメタ的な表現を行いたい
+            getRadioListTiles(radioPropaty),
             RadioListTile(
                 title: const Text("施工中"),
                 value: "2",
@@ -66,16 +72,9 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
                 value: "3",
                 groupValue: _type,
                 onChanged: _handleTypeRadio),
-            const Text(AppConstants.JA_STAFF_NAME),
-            TextFormField(
-              decoration: const InputDecoration(
-                  labelText: AppConstants.STAFF_NAME_HINT_TEXT),
-            ),
-            const Text(AppConstants.JA_ADRESS),
-            TextFormField(
-              decoration: const InputDecoration(
-                  labelText: AppConstants.ADRESS_HINT_TEXT),
-            ),
+            getInputItem(
+                AppConstants.JA_STAFF_NAME, AppConstants.STAFF_NAME_HINT_TEXT),
+            getInputItem(AppConstants.JA_ADRESS, AppConstants.ADRESS_HINT_TEXT),
             const Text(AppConstants.JA_STATUS),
             RadioListTile(
                 title: const Text("1:未着手"),
@@ -99,40 +98,56 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
                 onChanged: _handleStatusRadio),
 
             // TODO: textfield使ってのdatepickerはしっかり理解しておく(ロジック等を)
-            TextField(
-              controller: _startAt,
-              readOnly: true,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), hintText: "日付"),
-              onTap: () async {
-                DateTime initDate = DateTime.now();
-                try {
-                  initDate = DateFormat('yyyy/MM/dd').parse(_startAt.text);
-                } catch (_) {}
-
-                DateTime? picked = await showDatePicker(
-                    context: context,
-                    initialDate: initDate,
-                    firstDate: DateTime(2020),
-                    lastDate: DateTime.now().add(const Duration(days: 365)));
-
-                //* controllerであるstartAtに上の選択したpickedをいれればあとは自動で更新してくれる
-                String? formatDate;
-                try {
-                  formatDate = DateFormat('yyyy/MM/dd').format(picked!);
-                } catch (_) {}
-                if (formatDate != null) {
-                  _startAt.text = formatDate;
-                }
-              },
-            )
+            getDatePickerTextForm(),
+            getDatePickerTextForm(),
           ]),
         ),
       ),
     );
   }
 
-  Widget CustomRadioListTile(String title, String value, groupValue){
-    return RadioListTile(title: Text(title),value: value, groupValue: groupValue, onChanged: _handleStatusRadio)
+  Widget getRadioListTiles() {
+    return (Container());
+  }
+
+  Widget getInputItem(String columnTitle, String hintText) {
+    return (Column(
+      children: [
+        Text(columnTitle),
+        TextFormField(
+          decoration: InputDecoration(labelText: hintText),
+        ),
+      ],
+    ));
+  }
+
+  Widget getDatePickerTextForm() {
+    return TextField(
+      controller: _startAt,
+      readOnly: true,
+      decoration:
+          const InputDecoration(border: OutlineInputBorder(), hintText: "日付"),
+      onTap: () async {
+        DateTime initDate = DateTime.now();
+        try {
+          initDate = DateFormat('yyyy/MM/dd').parse(_startAt.text);
+        } catch (_) {}
+
+        DateTime? picked = await showDatePicker(
+            context: context,
+            initialDate: initDate,
+            firstDate: DateTime(2020),
+            lastDate: DateTime.now().add(const Duration(days: 365)));
+
+        //* controllerであるstartAtに上の選択したpickedをいれればあとは自動で更新してくれる
+        String? formatDate;
+        try {
+          formatDate = DateFormat('yyyy/MM/dd').format(picked!);
+        } catch (_) {}
+        if (formatDate != null) {
+          _startAt.text = formatDate;
+        }
+      },
+    );
   }
 }

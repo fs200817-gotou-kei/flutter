@@ -66,7 +66,6 @@ class AppConstants {
   static const String RELEASE_START_MESSAGE = "リリースモードでアプリを開始します。";
 
   // decoration
-  static const 
 
   // widgetのサイズ
   static const double FORM_MARGIN = 20;
