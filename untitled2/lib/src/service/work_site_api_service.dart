@@ -15,8 +15,8 @@ class WorkSiteApiService {
     final response = await getApi(AppConstants.WORK_SITES_BASE_URL);
     final statusCode = response.statusCode.toString();
 
-    // debugメッセージと普通のメッセージが分かれているのが少し気持ちが悪い
-    showDebugMessage(statusCode, response);
+    logger.d(AppConstants.STATUS_CODE_MESSEGE + statusCode.toString());
+    logger.d(response.body.toString());
 
     // validatedクラス側でこのif文作ってやったほうがいいのかな？(そっち側でheader情報とかを変えてしまう)
     logger.d(response.body.toString());
@@ -31,12 +31,5 @@ class WorkSiteApiService {
 
   getApi(String work_sites_base_url) async {
     return await http.get(Uri.parse(AppConstants.WORK_SITES_BASE_URL));
-  }
-
-  void showDebugMessage(statusCode, response) {
-    if (AppConstants.IS_DEBUG) {
-      logger.d(AppConstants.STATUS_CODE_MESSEGE + statusCode.toString());
-      logger.d(response.body.toString());
-    }
   }
 }

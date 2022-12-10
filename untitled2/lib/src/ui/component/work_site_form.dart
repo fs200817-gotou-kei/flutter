@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:untitled2/src/constant/app_constants.dart';
+import 'package:untitled2/src/model/work_site.dart';
 
 // 現場情報作成、編集画面で使用するフォームUI
 class WorkSiteForm extends StatefulWidget {
@@ -12,6 +13,8 @@ class WorkSiteForm extends StatefulWidget {
 
 class _WorkSiteFormState extends State<WorkSiteForm> {
   final _formKey = GlobalKey<FormState>();
+  late List<WorkSite> workSites;
+  // TODO: List<WorkSite> を受け取る必要がある
   // TODO: textfieldのcontrollerってここで管理するの微妙な気がする
   // → Provider？
   // enumを別ファイルに分けてそのクラスを持ちたい
@@ -46,8 +49,8 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
             // labelからformfieldをワンセットでメソッドで切り出し
             // ラジオは引数をオブジェクト型でグループ化してループでラジオボタン作っていくほうがいいかも
             // これができれば結構きれいにbuild内はメタ情報のみに絞れそう
-            getInputItem(AppConstants.JA_NAME, AppConstants.NAME_HINT_TEXT),
-            getInputItem(
+            getTextForm(AppConstants.JA_NAME, AppConstants.NAME_HINT_TEXT),
+            getTextForm(
                 AppConstants.JA_SUB_NAME, AppConstants.SUB_NAME_HINT_TEXT),
             const Text(AppConstants.JA_TYPE),
             RadioListTile(
@@ -61,7 +64,7 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
                 onChanged: _handleTypeRadio),
 
             // TODO: ↓のようにオブジェクト型を1個渡してメタ的な表現を行いたい
-            getRadioListTiles(radioPropaty),
+            // getRadioListTiles(radioPropaty),
             RadioListTile(
                 title: const Text("施工中"),
                 value: "2",
@@ -72,9 +75,9 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
                 value: "3",
                 groupValue: _type,
                 onChanged: _handleTypeRadio),
-            getInputItem(
+            getTextForm(
                 AppConstants.JA_STAFF_NAME, AppConstants.STAFF_NAME_HINT_TEXT),
-            getInputItem(AppConstants.JA_ADRESS, AppConstants.ADRESS_HINT_TEXT),
+            getTextForm(AppConstants.JA_ADRESS, AppConstants.ADRESS_HINT_TEXT),
             const Text(AppConstants.JA_STATUS),
             RadioListTile(
                 title: const Text("1:未着手"),
@@ -106,11 +109,18 @@ class _WorkSiteFormState extends State<WorkSiteForm> {
     );
   }
 
-  Widget getRadioListTiles() {
-    return (Container());
+  Widget getRadioListTiles(String title) {
+    return (Column(
+      children: [
+        Text(title),
+        for (WorkSite workSite in workSites) ...{
+          Text(workSite.status.toString())
+        }
+      ],
+    ));
   }
 
-  Widget getInputItem(String columnTitle, String hintText) {
+  Widget getTextForm(String columnTitle, String hintText) {
     return (Column(
       children: [
         Text(columnTitle),
